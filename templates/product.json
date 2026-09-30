@@ -1,0 +1,236 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "fit_note": {
+          "type": "text",
+          "settings": {
+            "text": "Runs small · size up",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title"
+        },
+        "price": {
+          "type": "price"
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector"
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "icons": {
+          "type": "icon-with-text",
+          "settings": {
+            "layout": "horizontal",
+            "icon_1": "truck",
+            "heading_1": "Free shipping over $60",
+            "icon_2": "return",
+            "heading_2": "Free exchanges within 30 days",
+            "icon_3": "ruler",
+            "heading_3": "Runs small, size up"
+          }
+        },
+        "fit": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Find your fit",
+            "icon": "ruler",
+            "content": "<p>Our sizing runs small, so size up. If you normally wear a 34B, order a 36B.</p><p><strong>Band:</strong> measure snugly around your ribcage, just under the bust, and round to the nearest even number.</p><p><strong>Cup:</strong> measure loosely around the fullest part of your bust. Each inch of difference between that and your band is one cup size (1 = A, 2 = B, 3 = C, 4 = D, 5 = E).</p><p>Bands 32 to 40, cups A through E, in Skin and Black. If it is not right, exchanges are free within 30 days and we cover return shipping.</p>"
+          }
+        },
+        "description": {
+          "type": "description"
+        },
+        "shipping": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Shipping and exchanges",
+            "icon": "truck",
+            "content": "<p>Free shipping on orders over $60 across Canada. Orders under $60 ship at a flat rate shown at checkout.</p><p>Exchanges are free within 30 days of delivery. We cover return shipping and there are no restocking fees. Start an exchange from the <a href=\"/pages/returns\" title=\"Returns and exchanges\">returns page</a>.</p>"
+          }
+        },
+        "care": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Care",
+            "icon": "washing",
+            "content": "<p>Hand wash cold with a mild detergent. Hang to dry. Keep it out of the hot dryer, which is what breaks down the silicone grip and the bonded edges over time.</p>"
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "fit_note",
+        "title",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "icons",
+        "fit",
+        "description",
+        "shipping",
+        "care",
+        "share"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_position": "left",
+        "gallery_layout": "thumbnail_slider",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "image_zoom": "lightbox",
+        "mobile_thumbnails": "hide",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "t1": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "title": "Stayed put through a wedding",
+            "quote": "<p>Ceremony, photos, four hours of dancing. I did not adjust it once. I have never said that about a strapless bra.</p>",
+            "author": "Priya S., Toronto",
+            "verified": false
+          }
+        },
+        "t2": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "title": "Finally, off-the-shoulder",
+            "quote": "<p>I bought an off-the-shoulder top two summers ago and never wore it. Wore it three times the first week I had this bra.</p>",
+            "author": "Camille D., Montreal",
+            "verified": false
+          }
+        },
+        "t3": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "title": "Listen to the size-up advice",
+            "quote": "<p>I almost ordered my usual 34C. The page said size up, so I went 36C and it fits exactly right. The band is firm without pinching.</p>",
+            "author": "Hannah W., Calgary",
+            "verified": false
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "settings": {
+        "eyebrow": "From customers",
+        "heading": "What people tell us after the first wear",
+        "heading_size": "h2",
+        "subheading": "",
+        "verified_label": "Verified buyer",
+        "columns_desktop": 3,
+        "color_scheme": "scheme-2",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "trust-bar": {
+      "type": "trust-bar",
+      "blocks": {
+        "shipping": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "heading": "Free shipping over $60",
+            "text": "Across Canada"
+          }
+        },
+        "exchanges": {
+          "type": "item",
+          "settings": {
+            "icon": "return",
+            "heading": "Free exchanges within 30 days",
+            "text": "Return shipping covered, no restocking fees"
+          }
+        },
+        "grip": {
+          "type": "item",
+          "settings": {
+            "icon": "check_mark",
+            "heading": "Silicone grip stays put",
+            "text": "Holds because of how it is built, not how tight it is"
+          }
+        },
+        "seamless": {
+          "type": "item",
+          "settings": {
+            "icon": "ruler",
+            "heading": "Seamless under fitted tops",
+            "text": "Bonded edges, no visible lines"
+          }
+        }
+      },
+      "block_order": [
+        "shipping",
+        "exchanges",
+        "grip",
+        "seamless"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "padding_top": 24,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "related-products",
+    "testimonials",
+    "trust-bar"
+  ]
+}

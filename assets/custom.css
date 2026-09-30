@@ -1,0 +1,147 @@
+/* StayLift brand overrides. Loaded after base.css and cro.css from layout/theme.liquid.
+   Soft editorial, photography-led, warm neutrals. Uses Dawn's CSS variables throughout. */
+
+/* Typography */
+.banner__heading,
+.banner__heading.h0,
+.banner__heading.hxl,
+.banner__heading.hxxl {
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+.product__title h1,
+.product__title h2,
+.featured-product .product__title h1,
+.card__heading {
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  letter-spacing: 0;
+}
+
+.product__title h1 {
+  font-size: calc(var(--font-heading-scale) * 3rem);
+  line-height: 1.1;
+}
+
+@media screen and (min-width: 750px) {
+  .product__title h1 {
+    font-size: calc(var(--font-heading-scale) * 3.6rem);
+  }
+}
+
+.product__text.caption-with-letter-spacing,
+.testimonials__eyebrow,
+.comparison__table thead th {
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+}
+
+/* Buttons */
+.button,
+.shopify-challenge__button,
+.customer button,
+button.shopify-payment-button__button--unbranded,
+.quick-add__submit,
+.sticky-atc .button {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.product-form__submit,
+.product-form__buttons .button,
+.shopify-payment-button__button {
+  min-height: 4.8rem;
+}
+
+/* Links: thin underline that appears on hover */
+.rte a,
+.link,
+.footer__list-social a,
+.list-menu__item--link,
+.underlined-link,
+.customer a {
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 0.25s ease;
+}
+
+.rte a:hover,
+.link:hover,
+.list-menu__item--link:hover,
+.underlined-link:hover,
+.customer a:hover {
+  text-decoration: none;
+  background-size: 100% 1px;
+}
+
+/* Variant pills and inputs */
+.product-form__input input[type='radio'] + label {
+  border-radius: var(--variant-pills-radius);
+  letter-spacing: 0.02em;
+}
+
+.product-form__input input[type='radio']:checked + label {
+  font-weight: 500;
+}
+
+/* Section headings get room to breathe (section padding itself is set per section in the JSON templates) */
+.title-wrapper-with-link,
+.title-wrapper--no-top-margin,
+.collapsible-content__heading,
+.stats__heading,
+.testimonials__header,
+.comparison__header {
+  margin-bottom: 3.2rem;
+}
+
+.trust-bar__heading {
+  font-weight: 500;
+}
+
+/* Stats strip on the deep plum band */
+.color-scheme-3 .stats__value {
+  color: #e8c9c0;
+}
+
+.stats__label {
+  letter-spacing: 0.04em;
+}
+
+/* Cards and testimonials */
+.card__information {
+  padding-top: 1.2rem;
+}
+
+.testimonial-card__quote {
+  font-size: 1.6rem;
+  line-height: 1.65;
+}
+
+/* Announcement bar and header */
+.announcement-bar__message {
+  letter-spacing: 0.04em;
+  font-size: 1.2rem;
+}
+
+.header__heading-link {
+  font-family: var(--font-heading-family);
+}
+
+/* Motion */
+@media (prefers-reduced-motion: reduce) {
+  .rte a,
+  .link,
+  .list-menu__item--link,
+  .underlined-link,
+  .customer a {
+    transition: none;
+  }
+}
