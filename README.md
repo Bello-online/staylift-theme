@@ -49,11 +49,23 @@ Snippets and settings (Theme settings > Conversion):
 
 Shared styles for these are in `assets/cro.css`.
 
+## Custom sections
+
+Three hand-coded, brand-specific sections. Each has its own markup and its own stylesheet in `assets/` (no Dawn image-banner or multirow markup is reused), a schema with presets, and works in the theme editor.
+
+| Section | Files | What it does |
+| --- | --- | --- |
+| `staylift-hero` | `sections/staylift-hero.liquid`, `assets/section-staylift-hero.css` | Asymmetric editorial hero. On desktop a 12-column grid: the image takes columns 1 to 7 at 4:3 (min-height 72vh) and a text panel takes columns 7 to 12, overlapping the image by one column. On mobile the image sits on top at 4:5 and the panel overlaps its bottom edge. Settings: image, image position, eyebrow, heading with an optional italic last word, text, primary button, text link, fit note, panel colour scheme, a faint warm tint over the image, padding. |
+| `fit-guide` | `sections/fit-guide.liquid`, `assets/section-fit-guide.css` | Product-page fit section. Left: a semantic size table (`caption`, `th scope`, tabular numbers) built from `size_row` blocks (up to 12), which stacks into label/value cards on mobile. Right: up to 4 `tip` blocks as cards with a thin left rule, plus a "Measuring at home" block. If there are no `size_row` blocks and the product has a `custom.size_guide` rich text metafield, that metafield renders in place of the table, so per-product size charts can live in Shopify admin rather than in the template. |
+| `hold-explainer` | `sections/hold-explainer.liquid`, `assets/section-hold-explainer.css`, `assets/hold-explainer.js` | "How it stays up" anatomy section. A square image with up to 5 numbered markers placed by percentage (`point` blocks with `x` and `y`), linked to an ordered list of headings and text. Clicking or focusing a marker or list item sets the active pair; markers are buttons with `aria-expanded` and `aria-controls`, arrow keys move between them, and the pulse animation is disabled under `prefers-reduced-motion`. |
+
+The homepage uses `staylift-hero` (id `hero`) and `hold-explainer` (id `how-it-stays-up`). The product template uses `fit-guide` directly after the main product section; the old "Find your fit" collapsible tab was removed to avoid duplicating it.
+
 ## Templates
 
 - `sections/header-group.json`: announcement bar (scheme-3) and a centred, sticky-on-scroll header.
-- `templates/index.json`: hero, trust bar, featured product, "How it stays up" multirow, featured collection, stats strip, testimonials, comparison table, FAQ, newsletter, closing CTA.
-- `templates/product.json`: fit note, title, price, variant pills with colour swatches, quantity, buy buttons, icon row, "Find your fit", description, "Shipping and exchanges", "Care", share. Then related products, testimonials and a trust bar.
+- `templates/index.json`: StayLift hero, trust bar, featured product, "How it stays up" hold explainer, featured collection, stats strip, testimonials, comparison table, FAQ, newsletter, closing CTA.
+- `templates/product.json`: fit note, title, price, variant pills with colour swatches, quantity, buy buttons, icon row, description, "Shipping and exchanges", "Care", share (stacked gallery, sticky product info). Then the fit guide, related products, testimonials and a trust bar.
 - `templates/collection.json`: banner, 3-column grid with filters, sorting and quick add, trust bar.
 - `templates/page.json`: page content plus trust bar.
 - `sections/footer-group.json`: brand block, footer menu, fit note, newsletter, payment icons and policy links on scheme-3.

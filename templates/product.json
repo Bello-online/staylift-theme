@@ -45,14 +45,6 @@
             "heading_3": "Runs small, size up"
           }
         },
-        "fit": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Find your fit",
-            "icon": "ruler",
-            "content": "<p>Our sizing runs small, so size up. If you normally wear a 34B, order a 36B.</p><p><strong>Band:</strong> measure snugly around your ribcage, just under the bust, and round to the nearest even number.</p><p><strong>Cup:</strong> measure loosely around the fullest part of your bust. Each inch of difference between that and your band is one cup size (1 = A, 2 = B, 3 = C, 4 = D, 5 = E).</p><p>Bands 32 to 40, cups A through E, in Skin and Black. If it is not right, exchanges are free within 30 days and we cover return shipping.</p>"
-          }
-        },
         "description": {
           "type": "description"
         },
@@ -87,7 +79,6 @@
         "quantity_selector",
         "buy_buttons",
         "icons",
-        "fit",
         "description",
         "shipping",
         "care",
@@ -97,7 +88,7 @@
         "enable_sticky_info": true,
         "color_scheme": "scheme-1",
         "media_position": "left",
-        "gallery_layout": "thumbnail_slider",
+        "gallery_layout": "stacked",
         "media_size": "large",
         "constrain_to_viewport": true,
         "media_fit": "contain",
@@ -107,6 +98,95 @@
         "enable_video_looping": false,
         "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "fit-guide": {
+      "type": "fit-guide",
+      "blocks": {
+        "s": {
+          "type": "size_row",
+          "settings": {
+            "size": "S",
+            "band": "32 to 34",
+            "cup_or_bust": "A to B",
+            "usual_size": "Usually XS to S"
+          }
+        },
+        "m": {
+          "type": "size_row",
+          "settings": {
+            "size": "M",
+            "band": "34 to 36",
+            "cup_or_bust": "B to C",
+            "usual_size": "Usually S to M"
+          }
+        },
+        "l": {
+          "type": "size_row",
+          "settings": {
+            "size": "L",
+            "band": "36 to 38",
+            "cup_or_bust": "C to D",
+            "usual_size": "Usually M to L"
+          }
+        },
+        "xl": {
+          "type": "size_row",
+          "settings": {
+            "size": "XL",
+            "band": "38 to 40",
+            "cup_or_bust": "D to E",
+            "usual_size": "Usually L to XL"
+          }
+        },
+        "xxl": {
+          "type": "size_row",
+          "settings": {
+            "size": "2XL",
+            "band": "40 to 42",
+            "cup_or_bust": "D to E",
+            "usual_size": "Usually XL to 2XL"
+          }
+        },
+        "tip_between": {
+          "type": "tip",
+          "settings": {
+            "heading": "Between two sizes? Take the larger.",
+            "text": "<p>The wide underband does the holding, so it does not need to be tight to stay put. If the band slips, the size is too big, not too small.</p>"
+          }
+        },
+        "tip_lotion": {
+          "type": "tip",
+          "settings": {
+            "heading": "Put it on before lotion.",
+            "text": "<p>The grip works against clean skin. Lotion, oil or powder on the band line will loosen it.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "s",
+        "m",
+        "l",
+        "xl",
+        "xxl",
+        "tip_between",
+        "tip_lotion"
+      ],
+      "settings": {
+        "heading": "Find your fit",
+        "intro": "<p>Our sizing runs small, so size up. If you normally wear a 34B, order a 36B. If you are a medium in most brands, take a large here.</p><p>Bands 32 to 40, cups A through E, in Skin and Black. If it is not right, exchanges are free within 30 days and we cover return shipping.</p>",
+        "show_table": true,
+        "table_caption": "Starting guide for the StayLift Strapless Bra. Band measurements are in inches. We are still confirming these against real fittings, so if you are between sizes, take the larger.",
+        "label_size": "Size",
+        "label_band": "Band (inches)",
+        "label_cup": "Cup",
+        "label_usual": "If you usually wear",
+        "measure_heading": "Measuring at home",
+        "measure_text": "<p><strong>Band:</strong> measure snugly around your ribcage, just under the bust, and round to the nearest even number.</p><p><strong>Cup:</strong> measure loosely around the fullest part of your bust. Each inch of difference between that and your band is one cup size (1 = A, 2 = B, 3 = C, 4 = D, 5 = E).</p>",
+        "color_scheme": "scheme-2",
+        "tip_color_scheme": "scheme-1",
+        "padding_top": 56,
+        "padding_bottom": 56
       }
     },
     "related-products": {
@@ -229,6 +309,7 @@
   },
   "order": [
     "main",
+    "fit-guide",
     "related-products",
     "testimonials",
     "trust-bar"

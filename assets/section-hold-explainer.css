@@ -1,0 +1,269 @@
+/* Hold explainer: annotated product image with numbered markers and a linked list. */
+
+.hold-explainer__header {
+  max-width: 64rem;
+  margin-bottom: 3.2rem;
+}
+
+.hold-explainer__heading {
+  margin: 0 0 1.2rem;
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  font-size: clamp(2.8rem, 3.6vw, 4.4rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: rgb(var(--color-foreground));
+}
+
+.hold-explainer__subheading {
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+
+.hold-explainer__subheading p {
+  margin: 0;
+}
+
+.hold-explainer__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.4rem;
+}
+
+/* Image and markers */
+.hold-explainer__figure {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--media-radius, 0.4rem);
+  background: rgba(var(--color-foreground), 0.04);
+}
+
+.hold-explainer__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hold-explainer__figure--placeholder .placeholder-svg {
+  fill: rgba(var(--color-foreground), 0.35);
+  background: rgba(var(--color-foreground), 0.06);
+}
+
+.hold-explainer__marker {
+  position: absolute;
+  z-index: 2;
+  width: 3.2rem;
+  height: 3.2rem;
+  margin: 0;
+  padding: 0;
+  transform: translate(-50%, -50%);
+  border: 0.2rem solid rgb(var(--color-background));
+  border-radius: 50%;
+  background: rgb(var(--color-button));
+  color: rgb(var(--color-button-text));
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading-family);
+  font-size: 1.5rem;
+  line-height: 1;
+  box-shadow: 0 0.4rem 1.2rem rgba(28, 25, 23, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Tap target padding without growing the visible circle */
+.hold-explainer__marker::after {
+  content: '';
+  position: absolute;
+  inset: -0.8rem;
+  border-radius: 50%;
+}
+
+.hold-explainer__marker::before {
+  content: '';
+  position: absolute;
+  inset: -0.2rem;
+  border-radius: 50%;
+  border: 0.15rem solid rgb(var(--color-button));
+  opacity: 0;
+  animation: hold-explainer-pulse 2.4s ease-out infinite;
+  pointer-events: none;
+}
+
+.hold-explainer__marker:nth-of-type(2)::before {
+  animation-delay: 0.4s;
+}
+
+.hold-explainer__marker:nth-of-type(3)::before {
+  animation-delay: 0.8s;
+}
+
+.hold-explainer__marker:nth-of-type(4)::before {
+  animation-delay: 1.2s;
+}
+
+.hold-explainer__marker:nth-of-type(5)::before {
+  animation-delay: 1.6s;
+}
+
+.hold-explainer__marker.is-active::before {
+  animation: none;
+  opacity: 0.5;
+  inset: -0.7rem;
+}
+
+.hold-explainer__marker:hover,
+.hold-explainer__marker.is-active {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.hold-explainer__marker:focus-visible {
+  outline: 0.2rem solid rgb(var(--color-foreground));
+  outline-offset: 0.5rem;
+}
+
+.hold-explainer__marker-number {
+  position: relative;
+  top: 0.05em;
+}
+
+@keyframes hold-explainer-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+/* List */
+.hold-explainer__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.14);
+}
+
+.hold-explainer__item {
+  position: relative;
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.14);
+  padding: 0 1.6rem 1.6rem 1.6rem;
+  transition: background-color 0.25s ease;
+}
+
+.hold-explainer__item.is-active {
+  background-color: rgba(var(--color-foreground), 0.06);
+}
+
+.color-scheme-1 .hold-explainer__item.is-active,
+.color-scheme-5 .hold-explainer__item.is-active {
+  background-color: #f3e7e1;
+}
+
+.hold-explainer__item-trigger {
+  display: flex;
+  align-items: baseline;
+  gap: 1.6rem;
+  width: 100%;
+  margin: 0;
+  padding: 2rem 0 0.8rem;
+  border: 0;
+  background: none;
+  color: rgb(var(--color-foreground));
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  font-size: 2rem;
+  line-height: 1.25;
+}
+
+.hold-explainer__item-trigger:focus-visible {
+  outline: 0.2rem solid rgb(var(--color-foreground));
+  outline-offset: 0.2rem;
+  border-radius: 0.2rem;
+}
+
+.hold-explainer__item-number {
+  flex: 0 0 auto;
+  min-width: 2.4rem;
+  font-family: var(--font-body-family);
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: rgba(var(--color-foreground), 0.72);
+  font-variant-numeric: tabular-nums;
+}
+
+.hold-explainer__item-number::before {
+  content: '0';
+}
+
+.hold-explainer__item-text {
+  padding-left: 4rem;
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: rgb(var(--color-foreground));
+}
+
+.hold-explainer__item-text p {
+  margin: 0;
+}
+
+.hold-explainer__item-text p + p {
+  margin-top: 1rem;
+}
+
+@media screen and (min-width: 750px) {
+  .hold-explainer__header {
+    margin-bottom: 4rem;
+  }
+
+  .hold-explainer__item {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .hold-explainer__body {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6.4rem;
+    align-items: center;
+  }
+
+  .hold-explainer__body--image-right .hold-explainer__media {
+    order: 2;
+  }
+
+  .hold-explainer__item-trigger {
+    font-size: 2.2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hold-explainer__marker,
+  .hold-explainer__item {
+    transition: none;
+  }
+
+  .hold-explainer__marker::before {
+    animation: none;
+  }
+
+  .hold-explainer__marker:hover,
+  .hold-explainer__marker.is-active {
+    transform: translate(-50%, -50%);
+  }
+}

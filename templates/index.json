@@ -1,51 +1,23 @@
 {
   "sections": {
     "hero": {
-      "type": "image-banner",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "The strapless bra that actually stays put.",
-            "heading_size": "hxl"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "Silicone grip, a wide bonded underband and seamless edges. It holds because of how it is built, not how tight it is.",
-            "text_style": "body"
-          }
-        },
-        "buttons": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop the bra",
-            "button_link_1": "/products/staylift-strapless-bra",
-            "button_style_secondary_1": false,
-            "button_label_2": "Find your fit",
-            "button_link_2": "/pages/find-your-fit",
-            "button_style_secondary_2": true
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "text",
-        "buttons"
-      ],
+      "type": "staylift-hero",
       "settings": {
-        "image_overlay_opacity": 0,
-        "image_height": "large",
-        "image_behavior": "none",
-        "desktop_content_position": "bottom-left",
-        "desktop_content_alignment": "left",
-        "show_text_box": true,
-        "color_scheme": "scheme-2",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "left",
-        "show_text_below": true,
-        "image": "shopify://shop_images/staylift-hero.jpg"
+        "image": "shopify://shop_images/staylift-hero.jpg",
+        "image_position": "left",
+        "image_scheme_overlay": 10,
+        "eyebrow": "Strapless, made to stay",
+        "heading": "The strapless bra that actually stays put.",
+        "italic_last_word": true,
+        "text": "<p>Silicone grip, a wide bonded underband and seamless edges. It holds because of how it is built, not how tight it is.</p>",
+        "button_label": "Shop the bra",
+        "button_link": "/products/staylift-strapless-bra",
+        "link_label": "Find your fit",
+        "link_url": "/pages/find-your-fit",
+        "fit_note": "Runs small. If you normally wear a 34B, order a 36B.",
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "trust-bar": {
@@ -164,37 +136,33 @@
       }
     },
     "how-it-stays-up": {
-      "type": "multirow",
+      "type": "hold-explainer",
       "blocks": {
         "grip": {
-          "type": "row",
+          "type": "point",
           "settings": {
-            "caption": "01",
+            "x": 50,
+            "y": 66,
             "heading": "Silicone grip along the band",
-            "text": "<p>A soft silicone strip runs the full length of the band, top and bottom. It holds to skin without pulling, so the bra stays where you put it instead of working its way down through the day.</p>",
-            "button_label": "",
-            "button_link": "",
-            "image": "shopify://shop_images/staylift-flatlay.jpg"
+            "text": "<p>A soft silicone strip runs the full length of the band, top and bottom. It holds to skin without pulling, so the bra stays where you put it instead of working its way down through the day.</p>"
           }
         },
         "underband": {
-          "type": "row",
+          "type": "point",
           "settings": {
-            "caption": "02",
-            "heading": "The wide bonded underband does the work",
-            "text": "<p>Most strapless bras hold on by being tight. Ours holds because the underband is wide and bonded, so the load spreads across the whole band. Firm, not pinching.</p>",
-            "button_label": "",
-            "button_link": ""
+            "x": 24,
+            "y": 60,
+            "heading": "Wide bonded underband",
+            "text": "<p>Most strapless bras hold on by being tight. Ours holds because the underband is wide and bonded, so the load spreads across the whole band. Firm, not pinching.</p>"
           }
         },
         "edges": {
-          "type": "row",
+          "type": "point",
           "settings": {
-            "caption": "03",
-            "heading": "Seamless edges disappear under fitted tops",
-            "text": "<p>The edges are bonded rather than stitched, so there is no ridge to show through a fitted top or a light dress.</p>",
-            "button_label": "Find your fit",
-            "button_link": "/pages/find-your-fit"
+            "x": 68,
+            "y": 38,
+            "heading": "Seamless bonded edges",
+            "text": "<p>The edges are bonded rather than stitched, so there is no ridge to show through a fitted top or a light dress.</p>"
           }
         }
       },
@@ -204,17 +172,11 @@
         "edges"
       ],
       "settings": {
-        "image_height": "medium",
-        "desktop_image_width": "medium",
-        "image_layout": "alternate-left",
-        "heading_size": "h2",
-        "text_style": "body",
-        "button_style": "secondary",
-        "desktop_content_position": "middle",
-        "desktop_content_alignment": "left",
-        "mobile_content_alignment": "left",
-        "section_color_scheme": "scheme-1",
-        "row_color_scheme": "scheme-5",
+        "heading": "How it stays up",
+        "subheading": "<p>It holds because of how it is built, not how tight it is. Tap a number to see what each part does.</p>",
+        "image": "shopify://shop_images/staylift-flatlay.jpg",
+        "image_position": "left",
+        "color_scheme": "scheme-1",
         "padding_top": 48,
         "padding_bottom": 48
       }

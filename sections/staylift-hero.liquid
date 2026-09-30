@@ -1,0 +1,235 @@
+{{ 'section-staylift-hero.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  #StayLiftHero-{{ section.id }} .staylift-hero__media::after {
+    opacity: {{ section.settings.image_scheme_overlay | divided_by: 100.0 }};
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign heading = section.settings.heading | strip
+  assign heading_html = heading | escape
+  if section.settings.italic_last_word and heading contains ' '
+    assign words = heading | split: ' '
+    assign last_word = words | last
+    assign first_count = words.size | minus: 1
+    assign first_words = words | slice: 0, first_count | join: ' '
+    assign heading_html = first_words | escape | append: ' <em>' | append: last_word | escape | append: '</em>'
+  endif
+
+  assign fetch_priority = 'auto'
+  if section.index == 1
+    assign fetch_priority = 'high'
+  endif
+-%}
+
+<div
+  id="StayLiftHero-{{ section.id }}"
+  class="staylift-hero staylift-hero--image-{{ section.settings.image_position }} section-{{ section.id }}-padding{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+>
+  <div class="staylift-hero__grid">
+    <div class="staylift-hero__media{% if section.settings.image == blank %} staylift-hero__media--placeholder{% endif %}">
+      {%- if section.settings.image != blank -%}
+        {{
+          section.settings.image
+          | image_url: width: 2400
+          | image_tag:
+            width: section.settings.image.width,
+            height: section.settings.image.height,
+            class: 'staylift-hero__image',
+            widths: '750, 1100, 1500, 2000, 2400',
+            sizes: '(min-width: 990px) 60vw, 100vw',
+            loading: 'eager',
+            fetchpriority: fetch_priority
+        }}
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg staylift-hero__image' }}
+      {%- endif -%}
+    </div>
+
+    <div class="staylift-hero__panel color-{{ section.settings.color_scheme }} gradient">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="staylift-hero__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+
+      {%- if heading != blank -%}
+        <h1 class="staylift-hero__heading">{{ heading_html }}</h1>
+      {%- endif -%}
+
+      {%- if section.settings.text != blank -%}
+        <div class="staylift-hero__text rte">{{ section.settings.text }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.button_label != blank or section.settings.link_label != blank -%}
+        <div class="staylift-hero__actions">
+          {%- if section.settings.button_label != blank -%}
+            <a
+              {% if section.settings.button_link == blank %}
+                role="link" aria-disabled="true"
+              {% else %}
+                href="{{ section.settings.button_link }}"
+              {% endif %}
+              class="button button--primary staylift-hero__button"
+            >
+              {{- section.settings.button_label | escape -}}
+            </a>
+          {%- endif -%}
+          {%- if section.settings.link_label != blank -%}
+            <a
+              {% if section.settings.link_url == blank %}
+                role="link" aria-disabled="true"
+              {% else %}
+                href="{{ section.settings.link_url }}"
+              {% endif %}
+              class="staylift-hero__link"
+            >
+              {{- section.settings.link_label | escape -}}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.fit_note != blank -%}
+        <p class="staylift-hero__fit-note">{{ section.settings.fit_note | escape }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "StayLift hero",
+  "tag": "section",
+  "class": "section section-staylift-hero",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "Landscape works best. On desktop the text panel overlaps the inner edge of the image, so keep the subject on the outer half."
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position on desktop",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "image_scheme_overlay",
+      "min": 0,
+      "max": 40,
+      "step": 5,
+      "unit": "%",
+      "label": "Warm tint over image",
+      "default": 10
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Strapless, made to stay"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The strapless bra that actually stays put."
+    },
+    {
+      "type": "checkbox",
+      "id": "italic_last_word",
+      "label": "Italicise the last word of the heading",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Silicone grip, a wide bonded underband and seamless edges. It holds because of how it is built, not how tight it is.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop the bra"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Text link label",
+      "default": "Find your fit"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Text link"
+    },
+    {
+      "type": "text",
+      "id": "fit_note",
+      "label": "Fit note",
+      "default": "Runs small. If you normally wear a 34B, order a 36B."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Panel colour scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "StayLift hero"
+    }
+  ]
+}
+{% endschema %}

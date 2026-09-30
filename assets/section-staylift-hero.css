@@ -1,0 +1,209 @@
+/* StayLift hero: asymmetric editorial layout. Image on one side, a text panel that overlaps it by one grid column. */
+
+.staylift-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.staylift-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* Image */
+.staylift-hero__media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: rgba(var(--color-foreground), 0.04);
+}
+
+.staylift-hero__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #e8c9c0;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.staylift-hero__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.staylift-hero__media--placeholder .placeholder-svg {
+  width: 100%;
+  height: 100%;
+  fill: rgba(var(--color-foreground), 0.35);
+  background: rgba(var(--color-foreground), 0.06);
+}
+
+/* Panel */
+.staylift-hero__panel {
+  position: relative;
+  z-index: 2;
+  margin: -3.2rem 1.6rem 0;
+  padding: 3.2rem 2.4rem 3.6rem;
+  border-radius: var(--media-radius, 0.4rem);
+  box-shadow: 0 1.2rem 3.2rem rgba(28, 25, 23, 0.06);
+}
+
+.staylift-hero__eyebrow {
+  margin: 0 0 1.6rem;
+  font-family: var(--font-body-family);
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.75);
+}
+
+.staylift-hero__heading {
+  margin: 0 0 2rem;
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  font-size: clamp(3.6rem, 5.6vw, 7.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  color: rgb(var(--color-foreground));
+}
+
+.staylift-hero__heading em {
+  font-style: italic;
+  font-weight: inherit;
+}
+
+.staylift-hero__text {
+  max-width: 44rem;
+  margin: 0 0 2.8rem;
+  font-size: 1.7rem;
+  line-height: 1.6;
+}
+
+.staylift-hero__text p {
+  margin: 0;
+}
+
+.staylift-hero__text p + p {
+  margin-top: 1.2rem;
+}
+
+.staylift-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.6rem 2.8rem;
+}
+
+.staylift-hero__button {
+  min-height: 4.8rem;
+  padding-left: 3.2rem;
+  padding-right: 3.2rem;
+}
+
+/* Text link with a thin underline that draws in */
+.staylift-hero__link {
+  position: relative;
+  display: inline-block;
+  padding: 0.4rem 0;
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgb(var(--color-foreground));
+}
+
+.staylift-hero__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0.1rem;
+  background: currentColor;
+  transform: scaleX(0.35);
+  transform-origin: left center;
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.staylift-hero__link:hover::after,
+.staylift-hero__link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.staylift-hero__link:focus-visible {
+  outline: 0.2rem solid rgba(var(--color-foreground), 0.6);
+  outline-offset: 0.3rem;
+  border-radius: 0.2rem;
+}
+
+.staylift-hero__fit-note {
+  margin: 2.8rem 0 0;
+  padding-top: 2rem;
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.12);
+  font-size: 1.3rem;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: rgba(var(--color-foreground), 0.72);
+}
+
+@media screen and (min-width: 750px) {
+  .staylift-hero__panel {
+    margin-left: 3.2rem;
+    margin-right: 3.2rem;
+    padding: 4rem 3.6rem 4.4rem;
+  }
+}
+
+/* Desktop: 12-column grid, panel overlaps the image by one column */
+@media screen and (min-width: 990px) {
+  .staylift-hero__grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: center;
+  }
+
+  .staylift-hero__media {
+    grid-row: 1;
+    grid-column: 1 / span 7;
+    aspect-ratio: 4 / 3;
+    min-height: 72vh;
+    max-height: 92vh;
+  }
+
+  .staylift-hero__panel {
+    grid-row: 1;
+    grid-column: 7 / span 6;
+    align-self: center;
+    margin: clamp(3.2rem, 6vh, 7.2rem) 0;
+    padding: clamp(4rem, 5vw, 6.4rem) clamp(3.6rem, 4.5vw, 6.4rem);
+    box-shadow: 0 2.4rem 6.4rem rgba(28, 25, 23, 0.08);
+  }
+
+  .staylift-hero--image-right .staylift-hero__media {
+    grid-column: 6 / span 7;
+  }
+
+  .staylift-hero--image-right .staylift-hero__panel {
+    grid-column: 1 / span 6;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .staylift-hero__panel {
+    padding-left: clamp(4.8rem, 5vw, 8rem);
+    padding-right: clamp(4.8rem, 5vw, 8rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .staylift-hero__link::after {
+    transition: none;
+  }
+}

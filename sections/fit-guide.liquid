@@ -1,0 +1,301 @@
+{{ 'section-fit-guide.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign size_rows = section.blocks | where: 'type', 'size_row'
+  assign tips = section.blocks | where: 'type', 'tip'
+  assign metafield_guide = product.metafields.custom.size_guide
+-%}
+
+<div class="fit-guide color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width section-{{ section.id }}-padding">
+    <div class="fit-guide__header{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <span class="fit-guide__icon" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 20.5C6 15.8 9.8 12 14.5 12h19C38.2 12 42 15.8 42 20.5v0C42 25.2 38.2 29 33.5 29H24" />
+          <path d="M24 29H14.5C9.8 29 6 32.8 6 37.5V38" />
+          <path d="M14.5 12v4M20.5 12v6M26.5 12v4M32.5 12v6" />
+          <path d="M20 29v4M15 29v6M10 29v4M6 35v3" />
+          <circle cx="33.5" cy="20.5" r="2.5" />
+        </svg>
+      </span>
+      {%- if section.settings.heading != blank -%}
+        <h2 class="fit-guide__heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.intro != blank -%}
+        <div class="fit-guide__intro rte">{{ section.settings.intro }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="fit-guide__columns">
+      <div class="fit-guide__table-col{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        {%- if section.settings.show_table -%}
+          {%- if size_rows.size > 0 -%}
+            <table class="fit-guide__table">
+              {%- if section.settings.table_caption != blank -%}
+                <caption class="fit-guide__caption">{{ section.settings.table_caption | escape }}</caption>
+              {%- endif -%}
+              <thead>
+                <tr>
+                  <th scope="col">{{ section.settings.label_size | escape }}</th>
+                  <th scope="col">{{ section.settings.label_band | escape }}</th>
+                  <th scope="col">{{ section.settings.label_cup | escape }}</th>
+                  <th scope="col">{{ section.settings.label_usual | escape }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {%- for block in size_rows -%}
+                  <tr {{ block.shopify_attributes }}>
+                    <th scope="row" data-label="{{ section.settings.label_size | escape }}">{{ block.settings.size | escape }}</th>
+                    <td data-label="{{ section.settings.label_band | escape }}">{{ block.settings.band | escape }}</td>
+                    <td data-label="{{ section.settings.label_cup | escape }}">{{ block.settings.cup_or_bust | escape }}</td>
+                    <td data-label="{{ section.settings.label_usual | escape }}">{{ block.settings.usual_size | escape }}</td>
+                  </tr>
+                {%- endfor -%}
+              </tbody>
+            </table>
+          {%- elsif metafield_guide != blank -%}
+            <div class="fit-guide__metafield rte">
+              {%- if section.settings.table_caption != blank -%}
+                <p class="fit-guide__caption">{{ section.settings.table_caption | escape }}</p>
+              {%- endif -%}
+              {{ metafield_guide | metafield_tag }}
+            </div>
+          {%- else -%}
+            <p class="fit-guide__empty">
+              {%- if request.design_mode -%}
+                Add size rows to this section, or fill in the product metafield custom.size_guide.
+              {%- else -%}
+                Sizing details for this product are coming soon.
+              {%- endif -%}
+            </p>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+
+      <div class="fit-guide__aside{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        {%- for block in tips -%}
+          <article class="fit-guide__tip color-{{ section.settings.tip_color_scheme }} gradient" {{ block.shopify_attributes }}>
+            {%- if block.settings.heading != blank -%}
+              <h3 class="fit-guide__tip-heading">{{ block.settings.heading | escape }}</h3>
+            {%- endif -%}
+            {%- if block.settings.text != blank -%}
+              <div class="fit-guide__tip-text rte">{{ block.settings.text }}</div>
+            {%- endif -%}
+          </article>
+        {%- endfor -%}
+
+        {%- if section.settings.measure_heading != blank or section.settings.measure_text != blank -%}
+          <div class="fit-guide__measure">
+            {%- if section.settings.measure_heading != blank -%}
+              <h3 class="fit-guide__measure-heading">{{ section.settings.measure_heading | escape }}</h3>
+            {%- endif -%}
+            {%- if section.settings.measure_text != blank -%}
+              <div class="fit-guide__measure-text rte">{{ section.settings.measure_text }}</div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Fit guide",
+  "tag": "section",
+  "class": "section section-fit-guide",
+  "max_blocks": 16,
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Find your fit"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro",
+      "default": "<p>Our sizing runs small, so size up. If you normally wear a 34B, order a 36B. If you are a medium elsewhere, take a large here.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Size table"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_table",
+      "label": "Show size table",
+      "default": true,
+      "info": "If there are no size rows, the section falls back to the product metafield custom.size_guide (rich text)."
+    },
+    {
+      "type": "text",
+      "id": "table_caption",
+      "label": "Table caption",
+      "default": "Starting guide. Band measurements are in inches."
+    },
+    {
+      "type": "text",
+      "id": "label_size",
+      "label": "Column: size",
+      "default": "Size"
+    },
+    {
+      "type": "text",
+      "id": "label_band",
+      "label": "Column: band",
+      "default": "Band (inches)"
+    },
+    {
+      "type": "text",
+      "id": "label_cup",
+      "label": "Column: cup or bust",
+      "default": "Cup"
+    },
+    {
+      "type": "text",
+      "id": "label_usual",
+      "label": "Column: usual size",
+      "default": "If you usually wear"
+    },
+    {
+      "type": "header",
+      "content": "Measuring at home"
+    },
+    {
+      "type": "text",
+      "id": "measure_heading",
+      "label": "Heading",
+      "default": "Measuring at home"
+    },
+    {
+      "type": "richtext",
+      "id": "measure_text",
+      "label": "Text",
+      "default": "<p><strong>Band:</strong> measure snugly around your ribcage, just under the bust, and round to the nearest even number.</p><p><strong>Cup:</strong> measure loosely around the fullest part of your bust. Each inch of difference between that and your band is one cup size (1 = A, 2 = B, 3 = C, 4 = D, 5 = E).</p>"
+    },
+    {
+      "type": "header",
+      "content": "Colours"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-2"
+    },
+    {
+      "type": "color_scheme",
+      "id": "tip_color_scheme",
+      "label": "Tip card colour scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 56
+    }
+  ],
+  "blocks": [
+    {
+      "type": "size_row",
+      "name": "Size row",
+      "limit": 12,
+      "settings": [
+        {
+          "type": "text",
+          "id": "size",
+          "label": "Size",
+          "default": "M"
+        },
+        {
+          "type": "text",
+          "id": "band",
+          "label": "Band",
+          "default": "34 to 36"
+        },
+        {
+          "type": "text",
+          "id": "cup_or_bust",
+          "label": "Cup or bust",
+          "default": "B to C"
+        },
+        {
+          "type": "text",
+          "id": "usual_size",
+          "label": "If you usually wear",
+          "default": "S to M"
+        }
+      ]
+    },
+    {
+      "type": "tip",
+      "name": "Tip",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Between two sizes? Take the larger."
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>The wide underband does the holding, so it does not need to be tight to stay put.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fit guide",
+      "blocks": [
+        { "type": "size_row", "settings": { "size": "S", "band": "32 to 34", "cup_or_bust": "A to B", "usual_size": "XS to S" } },
+        { "type": "size_row", "settings": { "size": "M", "band": "34 to 36", "cup_or_bust": "B to C", "usual_size": "S to M" } },
+        { "type": "size_row", "settings": { "size": "L", "band": "36 to 38", "cup_or_bust": "C to D", "usual_size": "M to L" } },
+        { "type": "tip" },
+        { "type": "tip", "settings": { "heading": "Put it on before lotion.", "text": "<p>The silicone grip works against clean, dry skin.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

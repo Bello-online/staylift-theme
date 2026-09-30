@@ -1,0 +1,262 @@
+/* Fit guide: size table on the left, tip cards and measuring notes on the right. */
+
+.fit-guide__header {
+  max-width: 64rem;
+  margin-bottom: 3.2rem;
+}
+
+.fit-guide__icon {
+  display: inline-flex;
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: 1.6rem;
+  color: rgb(var(--color-foreground));
+}
+
+.fit-guide__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.fit-guide__heading {
+  margin: 0 0 1.6rem;
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  font-size: clamp(2.8rem, 3.4vw, 4rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: rgb(var(--color-foreground));
+}
+
+.fit-guide__intro {
+  font-size: 1.7rem;
+  line-height: 1.6;
+}
+
+.fit-guide__intro p {
+  margin: 0;
+}
+
+.fit-guide__intro p + p {
+  margin-top: 1.2rem;
+}
+
+.fit-guide__columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 3.2rem;
+}
+
+/* Table */
+.fit-guide__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+  color: rgb(var(--color-foreground));
+}
+
+.fit-guide__caption {
+  margin: 0 0 1.6rem;
+  text-align: left;
+  caption-side: top;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  color: rgba(var(--color-foreground), 0.72);
+}
+
+.fit-guide__table th,
+.fit-guide__table td {
+  padding: 1.4rem 1.2rem;
+  text-align: left;
+  vertical-align: top;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.14);
+}
+
+.fit-guide__table thead th {
+  padding-top: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.72);
+  border-bottom-color: rgba(var(--color-foreground), 0.3);
+}
+
+.fit-guide__table tbody th {
+  font-family: var(--font-heading-family);
+  font-weight: var(--font-heading-weight);
+  font-size: 1.9rem;
+  line-height: 1.2;
+}
+
+.fit-guide__table th:first-child,
+.fit-guide__table td:first-child {
+  padding-left: 0;
+}
+
+.fit-guide__table th:last-child,
+.fit-guide__table td:last-child {
+  padding-right: 0;
+}
+
+.fit-guide__metafield table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.fit-guide__metafield th,
+.fit-guide__metafield td {
+  padding: 1.2rem;
+  text-align: left;
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.14);
+}
+
+.fit-guide__empty {
+  margin: 0;
+  padding: 2rem;
+  border: 0.1rem dashed rgba(var(--color-foreground), 0.3);
+  border-radius: var(--media-radius, 0.4rem);
+  font-size: 1.4rem;
+  color: rgba(var(--color-foreground), 0.72);
+}
+
+/* Mobile: rows become stacked label/value cards */
+@media screen and (max-width: 749px) {
+  .fit-guide__table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .fit-guide__table,
+  .fit-guide__table tbody,
+  .fit-guide__table tr,
+  .fit-guide__table th,
+  .fit-guide__table td {
+    display: block;
+  }
+
+  .fit-guide__table caption {
+    display: block;
+  }
+
+  .fit-guide__table tr {
+    padding: 1.6rem 0 0.4rem;
+    border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.14);
+  }
+
+  .fit-guide__table tr:first-child {
+    border-top: 0.1rem solid rgba(var(--color-foreground), 0.3);
+  }
+
+  .fit-guide__table th,
+  .fit-guide__table td {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.6rem;
+    padding: 0.6rem 0;
+    border-bottom: 0;
+  }
+
+  .fit-guide__table th::before,
+  .fit-guide__table td::before {
+    content: attr(data-label);
+    flex: 0 0 40%;
+    font-family: var(--font-body-family);
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(var(--color-foreground), 0.72);
+    padding-top: 0.3em;
+  }
+
+  .fit-guide__table tbody th {
+    padding-bottom: 1rem;
+  }
+
+  .fit-guide__table td {
+    text-align: right;
+  }
+}
+
+/* Tips */
+.fit-guide__aside {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.fit-guide__tip {
+  padding: 2rem 2.4rem 2rem 2.4rem;
+  border-left: 0.3rem solid rgb(var(--color-button));
+  border-radius: 0 var(--media-radius, 0.4rem) var(--media-radius, 0.4rem) 0;
+}
+
+.fit-guide__tip-heading {
+  margin: 0 0 0.8rem;
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  font-size: 1.9rem;
+  line-height: 1.25;
+  color: rgb(var(--color-foreground));
+}
+
+.fit-guide__tip-text,
+.fit-guide__measure-text {
+  font-size: 1.5rem;
+  line-height: 1.6;
+}
+
+.fit-guide__tip-text p,
+.fit-guide__measure-text p {
+  margin: 0;
+}
+
+.fit-guide__tip-text p + p,
+.fit-guide__measure-text p + p {
+  margin-top: 1rem;
+}
+
+.fit-guide__measure {
+  margin-top: 1.6rem;
+  padding-top: 2.4rem;
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.14);
+}
+
+.fit-guide__measure-heading {
+  margin: 0 0 1.2rem;
+  font-family: var(--font-body-family);
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.72);
+}
+
+@media screen and (min-width: 750px) {
+  .fit-guide__header {
+    margin-bottom: 4rem;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .fit-guide__columns {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: 6.4rem;
+    align-items: start;
+  }
+
+  .fit-guide__aside {
+    gap: 2rem;
+  }
+}
