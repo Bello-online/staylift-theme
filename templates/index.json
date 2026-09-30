@@ -44,7 +44,8 @@
         "color_scheme": "scheme-2",
         "stack_images_on_mobile": true,
         "mobile_content_alignment": "left",
-        "show_text_below": true
+        "show_text_below": true,
+        "image": "shopify://shop_images/staylift-hero.jpg"
       }
     },
     "trust-bar": {
@@ -172,7 +173,8 @@
             "heading": "Silicone grip along the band",
             "text": "<p>A soft silicone strip runs the full length of the band, top and bottom. It holds to skin without pulling, so the bra stays where you put it instead of working its way down through the day.</p>",
             "button_label": "",
-            "button_link": ""
+            "button_link": "",
+            "image": "shopify://shop_images/staylift-flatlay.jpg"
           }
         },
         "underband": {
