@@ -26,7 +26,8 @@
     assign last_word = words | last
     assign first_count = words.size | minus: 1
     assign first_words = words | slice: 0, first_count | join: ' '
-    assign heading_html = first_words | escape | append: ' <em>' | append: last_word | escape | append: '</em>'
+    assign last_word_escaped = last_word | escape
+    assign heading_html = first_words | escape | append: ' <em>' | append: last_word_escaped | append: '</em>'
   endif
 
   assign fetch_priority = 'auto'
